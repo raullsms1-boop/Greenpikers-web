@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greenpickr – Lawn Care & Junk Removal | Phoenix, AZ</title>
+  <meta name="description" content="Professional lawn care and junk removal for Phoenix area homes. Call 480-754-9951 for a free quote." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #1a3a1f;
+      --green-mid:   #2d6a35;
+      --green-bright:#4caf50;
+      --green-light: #e8f5e9;
+      --cream:       #faf9f6;
+      --brown:       #5c4033;
+      --text:        #1c1c1c;
+      --muted:       #5a6a5b;
+      --white:       #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(26,58,31,0.96);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--green-bright); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none; color: rgba(255,255,255,0.85);
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--green-bright); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--green-dark) 0%, #2a5c30 60%, #3a7a40 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.4rem 1.1rem; border-radius: 2rem;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.05;
+      color: var(--white); margin-bottom: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+    .hero h1 em { color: var(--green-bright); font-style: normal; }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.75);
+      max-width: 520px; line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-block; text-decoration: none;
+      padding: 0.85rem 2rem; border-radius: 0.5rem;
+      font-size: 0.95rem; font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+    .btn-primary {
+      background: var(--green-bright); color: var(--white);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.5);
+      color: var(--white);
+    }
+    .scroll-hint {
+      position: absolute; bottom: 2rem;
+      font-size: 0.78rem; color: rgba(255,255,255,0.45);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green-mid); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; line-height: 1.2;
+      color: var(--green-dark); margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 560px; line-height: 1.7; margin-bottom: 3.5rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      border: 1.5px solid #e0ece1;
+      border-radius: 1rem; padding: 2.5rem;
+      transition: box-shadow 0.25s, transform 0.25s;
+      background: var(--cream);
+    }
+    .service-card:hover {
+      box-shadow: 0 12px 40px rgba(44,106,53,0.12);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 0.75rem;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.4rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--green-dark); margin-bottom: 0.8rem;
+    }
+    .service-card p { color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+    .service-list { list-style: none; }
+    .service-list li {
+      color: var(--muted); font-size: 0.9rem;
+      padding: 0.25rem 0; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .service-list li::before {
+      content: '✓';
+      color: var(--green-bright); font-weight: 700;
+    }
+
+    /* ── WHY ── */
+    #why { background: var(--green-dark); }
+    #why .section-label { color: var(--green-bright); }
+    #why .section-title { color: var(--white); }
+    #why .section-sub { color: rgba(255,255,255,0.6); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 1rem; padding: 2rem;
+    }
+    .why-card .icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .why-card p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--cream); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-text .check-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .about-text .check-list li {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.95rem; color: var(--muted);
+    }
+    .check-list li::before {
+      content: '✓';
+      width: 22px; height: 22px;
+      background: var(--green-bright); color: var(--white);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 0.75rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      border-radius: 1.5rem; padding: 3rem;
+      color: white; text-align: center;
+    }
+    .about-visual .big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; font-weight: 900; line-height: 1;
+      color: var(--green-bright);
+    }
+    .about-visual p { color: rgba(255,255,255,0.7); margin-top: 0.5rem; font-size: 0.9rem; }
+    .stat-row { display: flex; gap: 2rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem; margin-top: 1rem;
+    }
+    .contact-card {
+      background: var(--green-light);
+      border-radius: 1rem; padding: 2rem; text-align: center;
+    }
+    .contact-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .contact-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--green-dark); margin-bottom: 0.4rem;
+    }
+    .contact-card a {
+      color: var(--green-mid); font-weight: 600;
+      text-decoration: none; font-size: 1.05rem;
+    }
+    .contact-card a:hover { color: var(--green-dark); }
+    .contact-card p { color: var(--muted); font-size: 0.9rem; }
+    .cta-block {
+      background: var(--green-dark); border-radius: 1.5rem;
+      padding: 3rem; text-align: center; margin-top: 3rem;
+    }
+    .cta-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .cta-block p { color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111; color: rgba(255,255,255,0.45);
+      text-align: center; padding: 2rem;
+      font-size: 0.85rem; line-height: 1.8;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .about-inner { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.25rem; }
+    }
+
+    /* ── FADE-IN ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Green<span>pickr</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Phoenix, AZ · Serving Local Homeowners</div>
+  <h1>Your Lawn,<br><em>Our Passion</em></h1>
+  <p>Professional lawn care and junk removal for a cleaner, greener home — reliable, eco-friendly, and affordable.</p>
+  <div class="btn-group">
+    <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+    <a href="#services" class="btn btn-outline">Our Services</a>
+  </div>
+  <div class="scroll-hint">↓ Scroll to explore</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <p class="section-label fade-in">What We Do</p>
+    <h2 class="section-title fade-in">Comprehensive Yard Solutions</h2>
+    <p class="section-sub fade-in">From routine lawn maintenance to full junk removal — we handle it all so you don't have to.</p>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🌿</div>
+        <h3>Lawn Care</h3>
+        <p>Professional mowing, trimming, edging, and seasonal maintenance to keep your grass healthy and vibrant year-round.</p>
+        <ul class="service-list">
+          <li>Weekly or bi-weekly mowing</li>
+          <li>Lawn fertilization</li>
+          <li>Weed control</li>
+          <li>Seasonal cleanup</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🚛</div>
+        <h3>Junk Removal</h3>
+        <p>Fast, reliable removal of unwanted items, debris, and clutter from your yard and property — same-day available.</p>
+        <ul class="service-list">
+          <li>Furniture and appliances</li>
+          <li>Yard debris removal</li>
+          <li>Construction waste</li>
+          <li>Same-day service available</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="container">
+    <p class="section-label fade-in">Why Greenpickr</p>
+    <h2 class="section-title fade-in">Built on Trust & Quality</h2>
+    <p class="section-sub fade-in">We take pride in every yard we touch. Here is what sets us apart from the rest.</p>
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="icon">👷</div>
+        <h4>Professional Team</h4>
+        <p>Experienced, friendly professionals who take pride in their work and show up on time, every time.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="icon">🌱</div>
+        <h4>Eco-Friendly</h4>
+        <p>Committed to sustainable practices and environmental responsibility with every job we do.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="icon">📅</div>
+        <h4>Reliable Service</h4>
+        <p>Dependable, on-time service you can count on. No surprises — just results you can see.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="icon">💰</div>
+        <h4>Affordable Pricing</h4>
+        <p>Competitive rates with free quotes. Quality lawn care and junk removal should not break the bank.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text fade-in">
+        <p class="section-label">About Us</p>
+        <h2 class="section-title">Locally Owned, Community Focused</h2>
+        <p style="color:var(--muted);line-height:1.7;margin-bottom:0.5rem;">
+          Greenpickr is a locally-owned lawn care and junk removal business dedicated to helping Phoenix-area homeowners maintain beautiful, clean properties. With years of experience and a commitment to excellence, we have become the trusted choice for residential yard maintenance.
+        </p>
+        <p style="color:var(--muted);line-height:1.7;">
+          Our team of professionals takes pride in delivering exceptional service with attention to detail. We believe in building lasting relationships with our customers by consistently exceeding expectations.
+        </p>
+        <ul class="check-list">
+          <li>Fully insured and licensed</li>
+          <li>Environmentally conscious practices</li>
+          <li>Affordable, transparent pricing</li>
+        </ul>
+      </div>
+      <div class="about-visual fade-in">
+        <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">Our Promise</p>
+        <div class="stat-row">
+          <div>
+            <div class="big-num">100%</div>
+            <p>Satisfaction<br>Guaranteed</p>
+          </div>
+          <div>
+            <div class="big-num">0</div>
+            <p>Hidden<br>Fees</p>
+          </div>
+        </div>
+        <p style="margin-top:2rem;font-size:0.9rem;color:rgba(255,255,255,0.55);">
+          Phoenix area residential properties · Free consultations
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label fade-in">Get In Touch</p>
+    <h2 class="section-title fade-in">Ready to Transform Your Yard?</h2>
+    <p class="section-sub fade-in">Contact us today for a free, no-obligation quote. We serve residential properties throughout the Phoenix area.</p>
+    <div class="contact-grid">
+      <div class="contact-card fade-in">
+        <div class="icon">📞</div>
+        <h4>Phone</h4>
+        <a href="tel:4807549951">480 754 9951</a>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="icon">📧</div>
+        <h4>Email</h4>
+        <a href="mailto:info@greenpickr.com">info@greenpickr.com</a>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="icon">📍</div>
+        <h4>Service Area</h4>
+        <p>Phoenix, AZ<br>Local residential properties</p>
+      </div>
+    </div>
+    <div class="cta-block fade-in">
+      <h3>Call or Email Us Today</h3>
+      <p>Schedule your free consultation — no commitment required.</p>
+      <a href="tel:4807549951" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem;">
+        📞 Call Now: 480 754 9951
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Greenpickr Lawn Care & Junk Removal · Phoenix, AZ · All rights reserved.</p>
+  <p>Professional lawn care and junk removal services for Phoenix area homes.</p>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
